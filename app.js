@@ -10,6 +10,7 @@ const ordersRoutes = require('./api/routes/orders');
 mongoose.connect('mongodb+srv://node-rest-shop:' + process.env.MONGO_ATLAS_PW + '@node-rest-shop-xnbpo.mongodb.net/test?retryWrites=true&w=majority', {
 	useNewUrlParser: true, useUnifiedTopology: true
 });
+mongoose.Promise = global.Promise;
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
