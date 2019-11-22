@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 
 const productRoutes = require('./api/routes/products');
 const ordersRoutes = require('./api/routes/orders');
+const userRoutes = require('./api/routes/user');
 
 mongoose.connect('mongodb+srv://node-rest-shop:' + process.env.MONGO_ATLAS_PW + '@node-rest-shop-xnbpo.mongodb.net/test?retryWrites=true&w=majority', {
 	useNewUrlParser: true, useUnifiedTopology: true
@@ -13,7 +14,7 @@ mongoose.connect('mongodb+srv://node-rest-shop:' + process.env.MONGO_ATLAS_PW + 
 mongoose.Promise = global.Promise;
 
 app.use(morgan('dev'));
-app.use('/uploads',express.static('uploads'));
+app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -30,6 +31,7 @@ app.use((req, res, next) => {
 //app use only our custom routes
 app.use('/products', productRoutes);
 app.use('/orders', ordersRoutes);
+app.use('/user', userRoutes);
 
 //if router pass valid routes call 404
 app.use((req, res, next) => {
